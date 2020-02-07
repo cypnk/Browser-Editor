@@ -93,7 +93,7 @@ const spec = ( e ) => {
 	// Control/Command or alt key?
 	if ( e.ctrlKey || e.metaKey ) {
 		// Send back the character code in lowercase
-		return String.fromCharCode(e.which).toLowerCase();
+		return String.fromCharCode( e.which ).toLowerCase();
 	}
 	
 	// Or send blank if not a command key
@@ -106,20 +106,21 @@ const make = ( t ) => {
 	let
 	// Create a DOMString out of blob object
 	u =	URL.createObjectURL( new Blob( [t], { type:'text/plain' } ) ),
+	
 	// Create a temporary anchor to force download
-	a =	document.createElement('a');
+	a =	document.createElement( 'a' );
 	
 	// Set the link href as the DOMString
-	atr(a,'href',u);
+	atr( a, 'href', u );
 	
 	// File name as 'editor.txt'
-	atr(a,'download', 'editor.txt');
+	atr( a, 'download', 'editor.txt' );
 	
 	// Force download
 	a.click();
 	
 	// Cleanup
-	document.body.removeChild(a);
+	document.body.removeChild( a );
 };
 
 
@@ -142,7 +143,9 @@ listen( ht, 'focus', ( e ) => {
 // Intercept Ctrl + S to save contents as a text file
 listen( window,'keydown',( e ) => {
 	// Is this a save command?
-	let k=spec(e);if(k=='s'){
+	let k = spec(e);
+	
+	if ( k == 's' ) {
 		// Prevent browser saving
 		e.preventDefault();
 		
